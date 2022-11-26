@@ -1,8 +1,7 @@
 # Berlin Clock Kata
 
 The Berlin Clock (Mengenlehreclock or Berlin Uhr) is a clock that tells the time using a series of illuminated coloured
-blocks, as you can see in the picture for this project.
-
+blocks.
 The top lamp blinks to show seconds- it is illuminated on even seconds and off on odd seconds.
 
 The next two rows represent hours. The upper row represents 5 hour blocks and is made up of 4 red lamps. The lower row
