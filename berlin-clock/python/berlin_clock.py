@@ -1,27 +1,43 @@
 class BerlinClock:
+    RED_LAMP = "R"
+    YELLOW_LAMP = "Y"
+    OFF_LAMP = "O"
+    NR_LAMPS_SINGLE_ROW = 4
+    NR_LAMPS_FIVE_ROW = 11
 
     def convert(self, time: str) -> str:
         parsed_time = time.split(":")
-        minutes = self.extract_minutes(parsed_time)
-        berlin_format = self.get_single_minutes_row(minutes)
+        minutes = self.__extract_minutes(parsed_time)
+        five_row = self.get_single_minutes_row(minutes)
+        four_row = self.get_five_minutes_row(minutes)
+
+        berlin_format = four_row + five_row
 
         return berlin_format
 
     def get_single_minutes_row(self, minutes: int) -> str:
-        total_lamps = 4
-        nr_lamps_on = minutes % 5
-        single_minutes_row_format = "Y" * nr_lamps_on
+        single_minutes = ""
+        lamps_on = minutes % 5
+        for i in range(1, self.NR_LAMPS_SINGLE_ROW + 1):
+            if i <= lamps_on:
+                single_minutes += self.YELLOW_LAMP
+            else:
+                single_minutes += self.OFF_LAMP
+        return single_minutes
 
-        time = self.fill_with_off_lamps(single_minutes_row_format, total_lamps)
+    def get_five_minutes_row(self, minutes: int) -> str:
+        five_minutes = ""
+        lamps_on = minutes // 5
+        for i in range(1, self.NR_LAMPS_FIVE_ROW + 1):
+            if i <= lamps_on:
+                five_minutes += self.__red_or_yellow_lamp(i)
+            else:
+                five_minutes += self.OFF_LAMP
 
-        return time
+        return five_minutes
 
-    def fill_with_off_lamps(self, time_format: str, total_lamps: int) -> str:
-        if len(time_format) < total_lamps:
-            nr_off_lamps = total_lamps - len(time_format)
-            time_format += "O" * nr_off_lamps
-        return time_format
+    def __extract_minutes(self, parsed_time: list) -> int:
+        return int(parsed_time[1])
 
-    def extract_minutes(self, parsed_time: list) -> int:
-        minutes = int(parsed_time[1])
-        return minutes
+    def __red_or_yellow_lamp(self, lamp_number: int) -> str:
+        return self.YELLOW_LAMP if lamp_number % 3 else self.RED_LAMP
