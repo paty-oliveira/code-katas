@@ -41,13 +41,3 @@ the clock row by row to make things clearer and ensure we get everything right f
 6. Integrate the Entire Berlin Clock:
 
 ![Task 6](img/task6.png)
-
-
-### Feature 2 - Converting Berlin Time to Digital Time
-The change to using Berlin Time has gone so well that we've decided to introduce it everywhere, from the clocks on the microwaves to the company-approved wristwatches. Unfortunately, people are having trouble quickly deciphering the current time which is having a detrimental effect on productivity. As such, we need to create a converter that takes a Berlin Time and returns a Digital Time.
-
-#### List of tasks:
-
-1. Convert Berlin Time to Digital Time:
-
-![Task 7](img/task7.png)
