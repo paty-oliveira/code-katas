@@ -10,7 +10,9 @@ using tests to drive out your design, and much more.
 
 ## Catalogue
 1. [Berlin Clock](berlin-clock/)
+2. [FizzBuzz](fizz-buzz/)
 
 
 ## Resources
 - [Agile Katas](https://agilekatas.co.uk/)
+- [Coding Dojo](https://codingdojo.org/kata/)
