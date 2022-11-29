@@ -39,7 +39,7 @@ class TestConvertingDigitalTimeToBerlinTime(unittest.TestCase):
     def test_should_return_correct_five_minutes_row_before_midnight(self):
         input_time = "23:59:59"
         clock = BerlinClock()
-        actual_minutes = clock.convert(input_time)[:11]
+        actual_minutes = clock.convert(input_time)[4:15]
         minutes_format = "YYRYYRYYRYY"
 
         self.assertEqual(minutes_format, actual_minutes)
@@ -47,7 +47,31 @@ class TestConvertingDigitalTimeToBerlinTime(unittest.TestCase):
     def test_should_return_correct_five_minutes_row_after_midnight(self):
         input_time = "12:35:00"
         clock = BerlinClock()
-        actual_minutes = clock.convert(input_time)[:11]
+        actual_minutes = clock.convert(input_time)[4:15]
         minutes_format = "YYRYYRYOOOO"
 
         self.assertEqual(minutes_format, actual_minutes)
+
+    def test_should_return_correct_single_hours_row_for_midnight(self):
+        input_time = "00:00:00"
+        clock = BerlinClock()
+        actual_hours = clock.convert(input_time)[:4]
+        hours_format = "OOOO"
+
+        self.assertEqual(hours_format, actual_hours)
+
+    def test_should_return_correct_single_hours_before_midnight(self):
+        input_time = "23:59:59"
+        clock = BerlinClock()
+        actual_hours = clock.convert(input_time)[:4]
+        hours_format = "RRRO"
+
+        self.assertEqual(hours_format, actual_hours)
+
+    def test_should_return_correct_single_hours_after_midnight(self):
+        input_time = "14:35:00"
+        clock = BerlinClock()
+        actual_hours = clock.convert(input_time)[:4]
+        hours_format = "RRRR"
+
+        self.assertEqual(hours_format, actual_hours)
