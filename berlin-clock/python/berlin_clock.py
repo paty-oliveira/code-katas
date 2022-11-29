@@ -15,48 +15,21 @@ class BerlinClock:
         first_row = self.get_seconds_row(seconds)
         two_row = self.get_five_hours_row(hours)
         three_row = self.get_single_hours_row(hours)
-        five_row = self.get_single_minutes_row(minutes)
         four_row = self.get_five_minutes_row(minutes)
+        five_row = self.get_single_minutes_row(minutes)
 
         return first_row + two_row + three_row + four_row + five_row
 
     def get_seconds_row(self, seconds):
-        first_row = ""
-        if seconds % 2 == 0:
-            first_row = "Y"
-        else:
-            first_row = "O"
-        return first_row
+        return self.YELLOW_LAMP if seconds % 2 == 0 else self.OFF_LAMP
 
     def get_five_hours_row(self, hours):
-        two_row = ""
         lamps_on = hours // 5
-        for i in range(1, self.NR_LAMPS_TWO_ROW + 1):
-            if i <= lamps_on:
-                two_row += self.RED_LAMP
-            else:
-                two_row += self.OFF_LAMP
-        return two_row
+        return self.__on_or_off(self.NR_LAMPS_TWO_ROW, lamps_on, self.RED_LAMP)
 
     def get_single_hours_row(self, hours: int) -> str:
-        single_hours = ""
         lamps_on = hours % 5
-        for i in range(1, self.NR_LAMPS_THREE_ROW + 1):
-            if i <= lamps_on:
-                single_hours += self.RED_LAMP
-            else:
-                single_hours += self.OFF_LAMP
-        return single_hours
-
-    def get_single_minutes_row(self, minutes: int) -> str:
-        single_minutes = ""
-        lamps_on = minutes % 5
-        for i in range(1, self.NR_LAMPS_FIVE_ROW + 1):
-            if i <= lamps_on:
-                single_minutes += self.YELLOW_LAMP
-            else:
-                single_minutes += self.OFF_LAMP
-        return single_minutes
+        return self.__on_or_off(self.NR_LAMPS_THREE_ROW, lamps_on, self.RED_LAMP)
 
     def get_five_minutes_row(self, minutes: int) -> str:
         five_minutes = ""
@@ -68,6 +41,19 @@ class BerlinClock:
                 five_minutes += self.OFF_LAMP
 
         return five_minutes
+
+    def get_single_minutes_row(self, minutes: int) -> str:
+        lamps_on = minutes % 5
+        return self.__on_or_off(self.NR_LAMPS_FIVE_ROW, lamps_on, self.YELLOW_LAMP)
+   
+    def __on_or_off(self, total_lamps, nr_lamps_on, lamp_on_symbol):
+        time_format = ""
+        for i in range(1, total_lamps + 1):
+            if i <= nr_lamps_on:
+                time_format += lamp_on_symbol
+            else:
+                time_format += self.OFF_LAMP
+        return time_format
 
     def __red_or_yellow_lamp(self, lamp_number: int) -> str:
         return self.YELLOW_LAMP if lamp_number % 3 else self.RED_LAMP
