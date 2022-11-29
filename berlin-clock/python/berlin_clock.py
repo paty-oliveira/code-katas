@@ -2,21 +2,33 @@ class BerlinClock:
     RED_LAMP = "R"
     YELLOW_LAMP = "Y"
     OFF_LAMP = "O"
+    NR_LAMPS_TWO_ROW = 4
     NR_LAMPS_THREE_ROW = 4
-    NR_LAMPS_FOUR_ROW = 4
-    NR_LAMPS_FIVE_ROW = 11
+    NR_LAMPS_FOUR_ROW = 11
+    NR_LAMPS_FIVE_ROW = 4
 
     def convert(self, time: str) -> str:
         parsed_time = time.split(":")
         minutes = int(parsed_time[1])
         hours = int(parsed_time[0])
+        two_row = self.get_five_hours_row(hours)
         three_row = self.get_single_hours_row(hours)
         five_row = self.get_single_minutes_row(minutes)
         four_row = self.get_five_minutes_row(minutes)
 
-        berlin_format = three_row + four_row + five_row
+        berlin_format = two_row + three_row + four_row + five_row
 
         return berlin_format
+
+    def get_five_hours_row(self, hours):
+        two_row = ""
+        lamps_on = hours // 5
+        for i in range(1, self.NR_LAMPS_TWO_ROW + 1):
+            if i <= lamps_on:
+                two_row += self.RED_LAMP
+            else:
+                two_row += self.OFF_LAMP
+        return two_row
 
     def get_single_hours_row(self, hours: int) -> str:
         single_hours = ""
@@ -31,7 +43,7 @@ class BerlinClock:
     def get_single_minutes_row(self, minutes: int) -> str:
         single_minutes = ""
         lamps_on = minutes % 5
-        for i in range(1, self.NR_LAMPS_FOUR_ROW + 1):
+        for i in range(1, self.NR_LAMPS_FIVE_ROW + 1):
             if i <= lamps_on:
                 single_minutes += self.YELLOW_LAMP
             else:
@@ -41,7 +53,7 @@ class BerlinClock:
     def get_five_minutes_row(self, minutes: int) -> str:
         five_minutes = ""
         lamps_on = minutes // 5
-        for i in range(1, self.NR_LAMPS_FIVE_ROW + 1):
+        for i in range(1, self.NR_LAMPS_FOUR_ROW + 1):
             if i <= lamps_on:
                 five_minutes += self.__red_or_yellow_lamp(i)
             else:
