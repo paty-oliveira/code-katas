@@ -115,3 +115,27 @@ class TestConvertingDigitalTimeToBerlinTime(unittest.TestCase):
         seconds_format = "O"
 
         self.assertEqual(seconds_format, actual_seconds)
+
+    def test_should_return_correct_berlin_time_for_midnight(self):
+        input_time = "00:00:00"
+        clock = BerlinClock()
+        actual_time = clock.convert(input_time)
+        time_format = "YOOOOOOOOOOOOOOOOOOOOOOO"
+
+        self.assertEqual(time_format, actual_time)
+
+    def test_should_return_correct_berlin_time_before_midnight(self):
+        input_time = "23:59:59"
+        clock = BerlinClock()
+        actual_time = clock.convert(input_time)
+        time_format = "ORRRRRRROYYRYYRYYRYYYYYY"
+
+        self.assertEqual(time_format, actual_time)
+
+    def test_should_return_correct_berlin_time_after_midnight(self):
+        input_time = "16:50:06"
+        clock = BerlinClock()
+        actual_time = clock.convert(input_time)
+        time_format = "YRRROROOOYYRYYRYYRYOOOOO"
+
+        self.assertEqual(time_format, actual_time)
