@@ -11,14 +11,22 @@ class BerlinClock:
         parsed_time = time.split(":")
         minutes = int(parsed_time[1])
         hours = int(parsed_time[0])
+        seconds = int(parsed_time[2])
+        first_row = self.get_seconds_row(seconds)
         two_row = self.get_five_hours_row(hours)
         three_row = self.get_single_hours_row(hours)
         five_row = self.get_single_minutes_row(minutes)
         four_row = self.get_five_minutes_row(minutes)
 
-        berlin_format = two_row + three_row + four_row + five_row
+        return first_row + two_row + three_row + four_row + five_row
 
-        return berlin_format
+    def get_seconds_row(self, seconds):
+        first_row = ""
+        if seconds % 2 == 0:
+            first_row = "Y"
+        else:
+            first_row = "O"
+        return first_row
 
     def get_five_hours_row(self, hours):
         two_row = ""
