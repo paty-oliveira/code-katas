@@ -4,9 +4,9 @@ Fizz Buzz is a counting and number substitution game mainly aimed at teaching ch
 counting up from one, replacing any number that is divisible by three with the word 'fizz', any number divisible by
 five with the word 'buzz', and any number divisible by both three and five to be replaced with 'fizz buzz'.
 
-For a given natural number greater than zero return:
+Given an integer n, return a string array answer (1-indexed) where:
 
-- "fizz" if the number is dividable by 3
-- "buzz" if the number is dividable by 5
-- "fizzbuzz" if the number is dividable by 15
-- the same number if no other requirement is fulfilled
+- answer[i] == "FizzBuzz" if i is divisible by 3 and 5.
+- answer[i] == "Fizz" if i is divisible by 3.
+- answer[i] == "Buzz" if i is divisible by 5.
+- answer[i] == i (as a string) if none of the above conditions are true.
