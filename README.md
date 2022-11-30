@@ -11,6 +11,7 @@ using tests to drive out your design, and much more.
 ## Catalogue
 1. [Berlin Clock](berlin-clock/)
 2. [FizzBuzz](fizz-buzz/)
+3. [Tennis](tennis-game/)
 
 
 ## Resources
