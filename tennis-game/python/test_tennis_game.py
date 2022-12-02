@@ -47,19 +47,52 @@ class TestTennisGame(unittest.TestCase):
         self.assertEqual(expected_result, actual_result)
 
 
-    def test_should_return_correct_score_when_one_player_scores_the_maximum_points(self):
+    def test_should_return_correct_score_when_the_score_is_deuce(self):
         playerA = Player()
         playerB = Player()
         game = TennisGame(playerA, playerB)
         playerA.win_point()
         playerB.win_point()
         playerA.win_point()
+        playerB.win_point()
         playerA.win_point()
+        playerB.win_point()
         actual_result = game.score()
-        expected_result = "40:15"
+        expected_result = "40:40"
 
         self.assertEqual(expected_result, actual_result)
 
+    def test_should_return_correct_score_when_the_playerB_is_in_advantage(self):
+        playerA = Player()
+        playerB = Player()
+        game = TennisGame(playerA, playerB)
+        playerA.win_point()
+        playerB.win_point()
+        playerA.win_point()
+        playerB.win_point()
+        playerA.win_point()
+        playerB.win_point()
+        playerB.win_point()
+        actual_result = game.score()
+        expected_result = "40:A"
+
+        self.assertEqual(expected_result, actual_result)
+
+    def test_should_return_correct_score_when_the_playerA_is_in_advantage(self):
+        playerA = Player()
+        playerB = Player()
+        game = TennisGame(playerA, playerB)
+        playerA.win_point()
+        playerB.win_point()
+        playerA.win_point()
+        playerB.win_point()
+        playerA.win_point()
+        playerB.win_point()
+        playerA.win_point()
+        actual_result = game.score()
+        expected_result = "A:40"
+
+        self.assertEqual(expected_result, actual_result)
 
 
 if __name__ == '__main__':

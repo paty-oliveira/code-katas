@@ -1,17 +1,16 @@
 class Player:
-    MOVEMENTS_POINTS = {
-        1: 15,
-        2: 15,
-        3: 10
-    }
-
     def __init__(self):
         self.points = 0
         self.ball_win = 0
 
     def win_point(self):
         self.ball_win += 1
-        self.points += self.MOVEMENTS_POINTS[self.ball_win]
+        if self.ball_win <= 2:
+            self.points += 15
+        elif self.ball_win == 3:
+            self.points += 10
+        elif self.ball_win >= 4:
+            self.points += 0
 
 
 class TennisGame:
@@ -21,7 +20,13 @@ class TennisGame:
         self.playerB = playerB
 
     def score(self):
-        player_a_points = str(self.playerA.points)
-        player_b_points = str(self.playerB.points)
+        player_a_points = self.playerA.points
+        player_b_points = self.playerB.points
+
+        if self.playerB.ball_win > self.playerA.ball_win and player_b_points == 40:
+            return f"{player_a_points}:A"
+
+        if self.playerA.ball_win > self.playerB.ball_win and player_a_points == 40:
+            return f"A:{player_b_points}"
 
         return f"{player_a_points}:{player_b_points}"
