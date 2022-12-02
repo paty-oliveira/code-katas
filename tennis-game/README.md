@@ -1,28 +1,14 @@
 # Tennis Kata
 
-Tennis is a ball and racquet game that is scored in an interesting way. Instead of scoring the game using consecutive
-integers to denote number of points won by the players, it uses the scoring 0, 15, 30, 40, and A.
+Implement a simple tennis game.
 
-There are also special rules on how to score a game in tennis. A player must score at least four points in total and
-two more than their opponent to win. When the points are four, and the scores are equal, then the score is 'deuce'
-(40:40). When the points are four or more, and a player has one point more than their opponent, then the score is
-'advantage' (A:40).
+## Rules:
 
+- Scores from zero to three points are described as "love", "fifteen", "thirty", and "forty".
 
-## Features
-We want a program that can be used to score a game in real time, so we can use it for all of the tennis related
-endeavours we plan to undertake in the future. To begin with, we're going to need a way to update the score when a
-player wins a point, see what the current score is after each service, and see if their is a winner based on the
-current score and the rules above.
+- If at least three points have been scored by each side and a player has one more point than his opponent,
+the score of the game is "advantage" for the player in the lead.
 
-### Task 1
+- If at least three points have been scored by each player, and the score are equal, the score is "deuce".
 
-![Task 1](img/task1.png)
-
-### Task 2
-
-![Task 2](img/task2.png)
-
-### Task 3
-
-![Task 3](img/task3.png)
+- A game is won by the first player when have at least four points in total, and at least two points more than the opponent.
